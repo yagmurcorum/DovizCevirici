@@ -1,28 +1,49 @@
 # DovizCevirici
 
-DovizCevirici, Frankfurter API kullanılarak geliştirilen Windows Forms tabanlı bir döviz çevirici uygulamasıdır.
+DovizCevirici, Frankfurter API üzerinden döviz kuru verisi alan ve bu veriyi Windows Forms arayüzünde kullanarak temel döviz çevirme işlemi yapan öğrenme odaklı bir masaüstü uygulamasıdır.
 
-Bu proje kapsamında önce Frankfurter API Postman üzerinde incelenmiş, API response yapısı analiz edilmiş ve ardından aynı API Windows Forms uygulaması içinde kullanılarak temel döviz çevirme akışı geliştirilmiştir.
+Bu repository, ayrı bir backend API projesi değildir. Repository; Frankfurter API keşfi, Postman test çıktıları, Windows Forms uygulaması ve ilgili proje dokümantasyonunu temsil eder.
 
-## Proje Amacı
+## Domain Tanımı
 
-Bu çalışmanın amacı, public bir döviz kuru API'sinin nasıl keşfedileceğini, Postman ile nasıl test edileceğini ve gerçek bir masaüstü uygulama içerisinde nasıl tüketileceğini uygulamalı olarak öğrenmektir.
+DovizCevirici; kullanıcının seçtiği kaynak para birimi, hedef para birimi ve tutar bilgisine göre Frankfurter API üzerinden güncel kur bilgisini alır, `rate` değerini kullanarak dönüşüm sonucunu hesaplar ve sonucu Windows Forms arayüzünde gösterir.
 
-Proje iki ana aşamadan oluşmaktadır:
+## MVP Kapsamı
 
-1. Frankfurter API'nin Postman üzerinde incelenmesi
-2. Aynı API'yi kullanan Windows Forms döviz çevirici uygulamasının geliştirilmesi
+Bu projenin MVP kapsamı aşağıdaki maddelerden oluşur:
+
+- Frankfurter API'nin Postman ile incelenmesi
+- API endpoint ve query parameter yapısının anlaşılması
+- JSON response içerisindeki `rate` alanının analiz edilmesi
+- Windows Forms App ile temel kullanıcı arayüzünün oluşturulması
+- Kaynak para birimi, hedef para birimi ve tutar girişinin alınması
+- API üzerinden kur bilgisinin çekilmesi
+- Döviz çevirme sonucunun kullanıcıya gösterilmesi
+- Geçersiz kullanıcı girişleri için anlamlı hata mesajları verilmesi
+- README ve docs klasörü altında proje dokümantasyonunun hazırlanması
+
+## Kapsam Dışı
+
+Bu proje kapsamında aşağıdaki başlıklar yer almamaktadır:
+
+- Ayrı bir backend API geliştirme
+- Veritabanı kullanımı
+- Authentication / Authorization
+- Production deployment
+- CI/CD pipeline
+- Gelişmiş logging veya monitoring
+- Gerçek zamanlı finansal işlem sistemi geliştirme
 
 ## Kullanılan Teknolojiler
 
-* C#
-* .NET 8
-* Windows Forms App
-* HttpClient
-* Newtonsoft.Json
-* Frankfurter API
-* Postman
-* Git / GitHub
+- C#
+- .NET 8
+- Windows Forms App
+- HttpClient
+- Newtonsoft.Json
+- Frankfurter API
+- Postman
+- Git / GitHub
 
 ## Proje Yapısı
 
@@ -39,92 +60,19 @@ DovizCevirici/
 │       ├── Program.cs
 │       └── DovizCevirici.csproj
 ├── docs/
+│   ├── 00-dokumantasyon-indeksi.md
+│   ├── 01-proje-genel-bakis.md
+│   ├── 02-isimlendirme-standardi.md
+│   ├── architecture/
+│   ├── api-kesfi/
+│   └── validation/
 ├── postman/
 ├── README.md
 ├── .gitignore
 └── DovizCevirici.sln
 ```
 
-## Katman Sorumlulukları
-
-### Presentation
-
-Windows Forms ekranından sorumludur.
-
-Bu katmanda kullanıcıdan kaynak para birimi, hedef para birimi ve tutar bilgisi alınır. Sonuç ve hata mesajları kullanıcıya gösterilir.
-
-### Application
-
-Uygulamanın ana iş akışını yönetir.
-
-Kullanıcı isteğini doğrular, gerekli durumda Infrastructure katmanından kur bilgisini alır ve dönüşüm sonucunu hesaplar.
-
-### Domain
-
-Uygulamada kullanılan temel modelleri içerir.
-
-Bu katmanda conversion request, conversion result, validation result ve API response modelleri bulunur.
-
-### Infrastructure
-
-Frankfurter API ile HTTP iletişimini yönetir.
-
-API'ye GET isteği gönderir, JSON response'u Newtonsoft.Json ile parse eder ve response içindeki `rate` alanından kur bilgisini okur.
-
-## API Kullanımı
-
-Projede Frankfurter API kullanılmaktadır.
-
-Kullanılan endpoint:
-
-```text
-https://api.frankfurter.dev/v2/rates
-```
-
-Örnek istek:
-
-```text
-https://api.frankfurter.dev/v2/rates?base=USD&quotes=TRY
-```
-
-Bu istekte:
-
-* `base`: Kaynak para birimini belirtir.
-* `quotes`: Hedef para birimini belirtir.
-* `rate`: API response içinde döviz kuru değerinin bulunduğu alandır.
-
-Örnek response:
-
-```json
-[
-  {
-    "date": "2026-06-18",
-    "base": "USD",
-    "quote": "TRY",
-    "rate": 46.341
-  }
-]
-```
-
-Windows Forms uygulamasında hesaplama mantığı:
-
-```text
-Kullanıcı tutarı x rate = dönüşüm sonucu
-```
-
-## Uygulama Özellikleri
-
-* Kaynak para birimi seçimi
-* Hedef para birimi seçimi
-* Kullanıcıdan tutar girişi alınması
-* Frankfurter API'ye istek gönderilmesi
-* API response içindeki `rate` değerinin okunması
-* Döviz çevirme sonucunun ekranda gösterilmesi
-* Boş, geçersiz, sıfır veya negatif tutar girişlerinde kullanıcıya Türkçe pop-up mesaj gösterilmesi
-* Kaynak ve hedef para birimi aynı seçildiğinde kullanıcıya uyarı verilmesi
-* Enter tuşu ile çevirme işleminin tetiklenmesi
-
-## Çalıştırma Adımları
+## Quick Start
 
 Projeyi klonlayın:
 
@@ -144,65 +92,28 @@ Solution dosyasını build edin:
 dotnet build DovizCevirici.sln
 ```
 
-Uygulamayı çalıştırmak için Visual Studio 2022 ile `DovizCevirici.sln` dosyasını açın ve Start butonuna basın.
-
-Alternatif olarak terminalden çalıştırmak için:
+Uygulamayı terminalden çalıştırmak için:
 
 ```bash
 dotnet run --project src/DovizCevirici/DovizCevirici.csproj
 ```
 
-## Postman ve Windows Forms Karşılaştırması
+Alternatif olarak Visual Studio 2022 ile `DovizCevirici.sln` dosyasını açıp Start butonu ile uygulamayı çalıştırabilirsiniz.
 
-Postman üzerinde kullanılan API yaklaşımı ile Windows Forms uygulamasında kullanılan API yaklaşımı aynıdır.
+## Dokümantasyon Haritası
 
-Postman örneği:
+Detaylı proje dokümantasyonu `docs/` klasörü altında tutulmaktadır.
 
-```text
-GET https://api.frankfurter.dev/v2/rates?base=USD&quotes=TRY
-```
+- [Dokümantasyon İndeksi](docs/00-dokumantasyon-indeksi.md)
+- [Proje Genel Bakış](docs/01-proje-genel-bakis.md)
+- [İsimlendirme Standardı](docs/02-isimlendirme-standardi.md)
+- [Mimari Genel Bakış](docs/architecture/01-mimari-genel-bakis.md)
+- [Katman Sorumlulukları](docs/architecture/02-katman-sorumluluklari.md)
+- [API Keşfi ve Postman](docs/api-kesfi/01-postman-api-kesfi.md)
+- [Doğrulama ve Karşılaştırma](docs/validation/01-dogrulama-ve-karsilastirma.md)
 
-Postman response içinde gelen `rate` değeri, Windows Forms uygulamasında da aynı şekilde okunmaktadır.
+## Mevcut Durum
 
-Örnek senaryo:
+MVP kapsamındaki temel geliştirme, API keşfi, uygulama testi ve dokümantasyon hazırlığı tamamlanmıştır.
 
-```text
-Kaynak Para Birimi: USD
-Hedef Para Birimi: TRY
-Tutar: 100
-```
-
-Hesaplama mantığı:
-
-```text
-100 x rate = dönüşüm sonucu
-```
-
-Bu nedenle Postman'de görülen ham JSON response ile Windows Forms uygulamasında ekrana yansıyan sonuç aynı API verisine dayanmaktadır.
-
-## Test Edilen Senaryolar
-
-* USD -> TRY dönüşümü
-* EUR -> TRY dönüşümü
-* TRY -> USD dönüşümü
-* Boş tutar girişi
-* Harf veya geçersiz değer girişi
-* Sıfır tutar girişi
-* Negatif tutar girişi
-* Kaynak ve hedef para biriminin aynı seçilmesi
-* Enter tuşu ile çevirme işleminin tetiklenmesi
-
-## Kapsam Dışı
-
-Bu proje kapsamında aşağıdaki geliştirmeler yapılmamıştır:
-
-* Web uygulaması geliştirme
-* Ayrı bir backend API geliştirme
-* Veritabanı kullanımı
-* Production deployment
-* CI/CD süreci
-* Bonus özellikler
-
-## Notlar
-
-Bu proje öğrenme ve staj görevi kapsamında geliştirilmiştir. Ana hedef, public bir API'nin Postman ile keşfedilmesi ve Windows Forms uygulaması içerisinde temel düzeyde tüketilmesidir.
+Bu proje öğrenme ve staj görevi kapsamında hazırlanmıştır.
