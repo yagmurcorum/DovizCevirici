@@ -58,22 +58,22 @@ public class CurrencyConversionService
     {
         if (string.IsNullOrWhiteSpace(request.SourceCurrency))
         {
-            return ValidationResult.Failure("Kaynak para birimi secilmelidir.");
+            return ValidationResult.Failure("Kaynak para birimi seçilmelidir.");
         }
 
         if (string.IsNullOrWhiteSpace(request.TargetCurrency))
         {
-            return ValidationResult.Failure("Hedef para birimi secilmelidir.");
+            return ValidationResult.Failure("Hedef para birimi seçilmelidir.");
         }
 
         if (request.Amount <= 0)
         {
-            return ValidationResult.Failure("Tutar sifirdan buyuk olmalidir.");
+            return ValidationResult.Failure("Tutar sýfýrdan büyük olmalýdýr.");
         }
 
         if (request.SourceCurrency == request.TargetCurrency)
         {
-            return ValidationResult.Failure("Kaynak ve hedef para birimi ayni olamaz.");
+            return ValidationResult.Failure("Kaynak ve hedef para birimi ayný olamaz.");
         }
 
         return ValidationResult.Success();

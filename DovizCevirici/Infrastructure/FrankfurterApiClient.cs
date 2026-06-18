@@ -16,7 +16,10 @@ public class FrankfurterApiClient
     /// </summary>
     public FrankfurterApiClient()
     {
-        _httpClient = new HttpClient();
+        _httpClient = new HttpClient
+        {
+            Timeout = TimeSpan.FromSeconds(15)
+        };
     }
 
     /// <summary>
@@ -28,27 +31,42 @@ public class FrankfurterApiClient
     /// <exception cref="Exception">Thrown when the API request fails or rate value cannot be read.</exception>
     public async Task<decimal> GetRateAsync(string sourceCurrency, string targetCurrency)
     {
-        string requestUrl = $"{BaseUrl}?base={sourceCurrency}&quotes={targetCurrency}";
-
-        HttpResponseMessage response = await _httpClient.GetAsync(requestUrl);
-
-        if (!response.IsSuccessStatusCode)
+        try
         {
-            throw new Exception("Doviz kuru bilgisi alinirken API istegi basarisiz oldu.");
+            string requestUrl = $"{BaseUrl}?base={sourceCurrency}&quotes={targetCurrency}";
+
+            HttpResponseMessage response = await _httpClient.GetAsync(requestUrl);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Döviz kuru bilgisi alýnýrken API isteði baþarýsýz oldu.");
+            }
+
+            string jsonResponse = await response.Content.ReadAsStringAsync();
+
+            List<ExchangeRateResponse>? rates =
+                JsonConvert.DeserializeObject<List<ExchangeRateResponse>>(jsonResponse);
+
+            ExchangeRateResponse? rateResponse = rates?.FirstOrDefault();
+
+            if (rateResponse == null || rateResponse.Rate <= 0)
+            {
+                throw new Exception("API yanýtýndan geçerli kur bilgisi okunamadý.");
+            }
+
+            return rateResponse.Rate;
         }
-
-        string jsonResponse = await response.Content.ReadAsStringAsync();
-
-        List<ExchangeRateResponse>? rates =
-            JsonConvert.DeserializeObject<List<ExchangeRateResponse>>(jsonResponse);
-
-        ExchangeRateResponse? rateResponse = rates?.FirstOrDefault();
-
-        if (rateResponse == null || rateResponse.Rate <= 0)
+        catch (HttpRequestException)
         {
-            throw new Exception("API yanitindan gecerli kur bilgisi okunamadi.");
+            throw new Exception("API baðlantýsý sýrasýnda bir sorun oluþtu. Lütfen internet baðlantýnýzý kontrol edin.");
         }
-
-        return rateResponse.Rate;
+        catch (TaskCanceledException)
+        {
+            throw new Exception("API isteði zaman aþýmýna uðradý. Lütfen tekrar deneyin.");
+        }
+        catch (JsonException)
+        {
+            throw new Exception("API yanýtý beklenen formatta okunamadý.");
+        }
     }
 }
