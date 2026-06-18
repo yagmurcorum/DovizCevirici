@@ -1,27 +1,27 @@
 namespace DovizCevirici.Domain.Models;
 
 /// <summary>
-/// Frankfurter API'den dönen tek bir döviz kuru kaydýný temsil eder.
+/// Represents a single exchange rate record returned from the Frankfurter API.
 /// </summary>
 public class ExchangeRateResponse
 {
     /// <summary>
-    /// Kur bilgisinin ait olduðu tarih.
+    /// Date of the exchange rate.
     /// </summary>
     public DateTime Date { get; set; }
 
     /// <summary>
-    /// Kaynak para birimi.
+    /// Source currency code.
     /// </summary>
     public string Base { get; set; } = string.Empty;
 
     /// <summary>
-    /// Hedef para birimi.
+    /// Target currency code.
     /// </summary>
     public string Quote { get; set; } = string.Empty;
 
     /// <summary>
-    /// Kaynak para biriminin hedef para birimi karþýsýndaki kur deðeri.
+    /// Exchange rate value between source and target currency.
     /// </summary>
     public decimal Rate { get; set; }
 }

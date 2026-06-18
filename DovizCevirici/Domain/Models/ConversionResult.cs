@@ -1,37 +1,37 @@
 namespace DovizCevirici.Domain.Models;
 
 /// <summary>
-/// Döviz çevirme iþlemi sonucunda oluþan bilgileri temsil eder.
+/// Represents the result of a currency conversion operation.
 /// </summary>
 public class ConversionResult
 {
     /// <summary>
-    /// Kaynak para birimi.
+    /// Source currency used in the conversion.
     /// </summary>
     public string SourceCurrency { get; set; } = string.Empty;
 
     /// <summary>
-    /// Hedef para birimi.
+    /// Target currency used in the conversion.
     /// </summary>
     public string TargetCurrency { get; set; } = string.Empty;
 
     /// <summary>
-    /// Kullanýcýnýn girdiði tutar.
+    /// Original amount entered by the user.
     /// </summary>
     public decimal Amount { get; set; }
 
     /// <summary>
-    /// API'den alýnan kur deðeri.
+    /// Exchange rate value received from the API.
     /// </summary>
     public decimal Rate { get; set; }
 
     /// <summary>
-    /// Hesaplanan dönüþüm sonucu.
+    /// Calculated converted amount.
     /// </summary>
     public decimal ConvertedAmount { get; set; }
 
     /// <summary>
-    /// Kullanýcýya gösterilecek sonuç metni.
+    /// Text that will be shown to the user.
     /// </summary>
     public string DisplayText =>
         $"{Amount:N2} {SourceCurrency} = {ConvertedAmount:N2} {TargetCurrency}";

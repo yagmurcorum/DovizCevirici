@@ -1,22 +1,22 @@
 namespace DovizCevirici.Domain.Models;
 
 /// <summary>
-/// Kullanýcý giriþlerinin geçerlilik sonucunu temsil eder.
+/// Represents the result of an input validation operation.
 /// </summary>
 public class ValidationResult
 {
     /// <summary>
-    /// Ýþlemin geçerli olup olmadýðýný belirtir.
+    /// Indicates whether the validation result is valid.
     /// </summary>
     public bool IsValid { get; private set; }
 
     /// <summary>
-    /// Geçersiz durumda kullanýcýya gösterilecek hata mesajý.
+    /// Error message shown when validation fails.
     /// </summary>
     public string ErrorMessage { get; private set; } = string.Empty;
 
     /// <summary>
-    /// Baþarýlý validation sonucu oluþturur.
+    /// Creates a successful validation result.
     /// </summary>
     public static ValidationResult Success()
     {
@@ -27,7 +27,7 @@ public class ValidationResult
     }
 
     /// <summary>
-    /// Hatalý validation sonucu oluþturur.
+    /// Creates a failed validation result with an error message.
     /// </summary>
     public static ValidationResult Failure(string errorMessage)
     {

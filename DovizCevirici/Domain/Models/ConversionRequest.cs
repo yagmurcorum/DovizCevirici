@@ -1,22 +1,22 @@
 namespace DovizCevirici.Domain.Models;
 
 /// <summary>
-/// Kullanýcýnýn döviz çevirme isteðini temsil eder.
+/// Represents the user's currency conversion request.
 /// </summary>
 public class ConversionRequest
 {
     /// <summary>
-    /// Kaynak para birimi.
+    /// Source currency selected by the user.
     /// </summary>
     public string SourceCurrency { get; set; } = string.Empty;
 
     /// <summary>
-    /// Hedef para birimi.
+    /// Target currency selected by the user.
     /// </summary>
     public string TargetCurrency { get; set; } = string.Empty;
 
     /// <summary>
-    /// Kullanýcýnýn çevirmek istediði tutar.
+    /// Amount entered by the user.
     /// </summary>
     public decimal Amount { get; set; }
 }

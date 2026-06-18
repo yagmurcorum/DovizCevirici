@@ -4,14 +4,14 @@ using DovizCevirici.Infrastructure;
 namespace DovizCevirici.Application;
 
 /// <summary>
-/// Döviz çevirme iþ akýþýný yöneten servis sýnýfýdýr.
+/// Manages the currency conversion workflow.
 /// </summary>
 public class CurrencyConversionService
 {
     private readonly FrankfurterApiClient _apiClient;
 
     /// <summary>
-    /// CurrencyConversionService sýnýfýnýn yeni bir örneðini oluþturur.
+    /// Creates a new instance of the CurrencyConversionService class.
     /// </summary>
     public CurrencyConversionService()
     {
@@ -19,11 +19,11 @@ public class CurrencyConversionService
     }
 
     /// <summary>
-    /// Kullanýcýnýn döviz çevirme isteðini doðrular, API'den kur bilgisini alýr ve dönüþüm sonucunu hesaplar.
+    /// Validates the conversion request, gets the exchange rate from the API and calculates the converted amount.
     /// </summary>
-    /// <param name="request">Döviz çevirme isteði.</param>
-    /// <returns>Döviz çevirme iþlemi sonucunda oluþan sonuç bilgisi.</returns>
-    /// <exception cref="Exception">Kullanýcý giriþi geçersiz olduðunda veya API'den kur bilgisi alýnamadýðýnda fýrlatýlýr.</exception>
+    /// <param name="request">Currency conversion request.</param>
+    /// <returns>Currency conversion result.</returns>
+    /// <exception cref="Exception">Thrown when validation fails or exchange rate cannot be received.</exception>
     public async Task<ConversionResult> ConvertAsync(ConversionRequest request)
     {
         ValidationResult validationResult = ValidateRequest(request);
@@ -50,30 +50,30 @@ public class CurrencyConversionService
     }
 
     /// <summary>
-    /// Döviz çevirme isteðinin geçerli olup olmadýðýný kontrol eder.
+    /// Validates the currency conversion request.
     /// </summary>
-    /// <param name="request">Kontrol edilecek döviz çevirme isteði.</param>
-    /// <returns>Validation sonucu.</returns>
+    /// <param name="request">Currency conversion request to validate.</param>
+    /// <returns>Validation result.</returns>
     private ValidationResult ValidateRequest(ConversionRequest request)
     {
         if (string.IsNullOrWhiteSpace(request.SourceCurrency))
         {
-            return ValidationResult.Failure("Kaynak para birimi seçilmelidir.");
+            return ValidationResult.Failure("Kaynak para birimi secilmelidir.");
         }
 
         if (string.IsNullOrWhiteSpace(request.TargetCurrency))
         {
-            return ValidationResult.Failure("Hedef para birimi seçilmelidir.");
+            return ValidationResult.Failure("Hedef para birimi secilmelidir.");
         }
 
         if (request.Amount <= 0)
         {
-            return ValidationResult.Failure("Tutar sýfýrdan büyük olmalýdýr.");
+            return ValidationResult.Failure("Tutar sifirdan buyuk olmalidir.");
         }
 
         if (request.SourceCurrency == request.TargetCurrency)
         {
-            return ValidationResult.Failure("Kaynak ve hedef para birimi ayný olamaz.");
+            return ValidationResult.Failure("Kaynak ve hedef para birimi ayni olamaz.");
         }
 
         return ValidationResult.Success();

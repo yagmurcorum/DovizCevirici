@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace DovizCevirici.Infrastructure;
 
 /// <summary>
-/// Frankfurter API ile HTTP iletiþimini yöneten sýnýftýr.
+/// Handles HTTP communication with the Frankfurter API.
 /// </summary>
 public class FrankfurterApiClient
 {
@@ -12,7 +12,7 @@ public class FrankfurterApiClient
     private const string BaseUrl = "https://api.frankfurter.dev/v2/rates";
 
     /// <summary>
-    /// FrankfurterApiClient sýnýfýnýn yeni bir örneðini oluþturur.
+    /// Creates a new instance of the FrankfurterApiClient class.
     /// </summary>
     public FrankfurterApiClient()
     {
@@ -20,12 +20,12 @@ public class FrankfurterApiClient
     }
 
     /// <summary>
-    /// Kaynak ve hedef para birimine göre Frankfurter API'den kur deðerini getirir.
+    /// Gets the exchange rate value for the selected source and target currency.
     /// </summary>
-    /// <param name="sourceCurrency">Kaynak para birimi.</param>
-    /// <param name="targetCurrency">Hedef para birimi.</param>
-    /// <returns>Kaynak para biriminin hedef para birimi karþýsýndaki kur deðeri.</returns>
-    /// <exception cref="Exception">API isteði baþarýsýz olduðunda veya kur bilgisi okunamadýðýnda fýrlatýlýr.</exception>
+    /// <param name="sourceCurrency">Source currency code.</param>
+    /// <param name="targetCurrency">Target currency code.</param>
+    /// <returns>Exchange rate value between source and target currency.</returns>
+    /// <exception cref="Exception">Thrown when the API request fails or rate value cannot be read.</exception>
     public async Task<decimal> GetRateAsync(string sourceCurrency, string targetCurrency)
     {
         string requestUrl = $"{BaseUrl}?base={sourceCurrency}&quotes={targetCurrency}";
@@ -34,7 +34,7 @@ public class FrankfurterApiClient
 
         if (!response.IsSuccessStatusCode)
         {
-            throw new Exception("Döviz kuru bilgisi alýnýrken API isteði baþarýsýz oldu.");
+            throw new Exception("Doviz kuru bilgisi alinirken API istegi basarisiz oldu.");
         }
 
         string jsonResponse = await response.Content.ReadAsStringAsync();
@@ -46,7 +46,7 @@ public class FrankfurterApiClient
 
         if (rateResponse == null || rateResponse.Rate <= 0)
         {
-            throw new Exception("API yanýtýndan geçerli kur bilgisi okunamadý.");
+            throw new Exception("API yanitindan gecerli kur bilgisi okunamadi.");
         }
 
         return rateResponse.Rate;
