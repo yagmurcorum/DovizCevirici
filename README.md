@@ -15,6 +15,7 @@ Bu projenin MVP kapsamı aşağıdaki maddelerden oluşur:
 - Frankfurter API'nin Postman ile incelenmesi
 - API endpoint ve query parameter yapısının anlaşılması
 - JSON response içerisindeki `rate` alanının analiz edilmesi
+- Postman üzerinde alınan örnek JSON response çıktılarının `postman/` klasörü altında saklanması
 - Windows Forms App ile temel kullanıcı arayüzünün oluşturulması
 - Kaynak para birimi, hedef para birimi ve tutar girişinin alınması
 - API üzerinden kur bilgisinin çekilmesi
@@ -49,6 +50,7 @@ Bu proje kapsamında aşağıdaki başlıklar yer almamaktadır:
 
 ```text
 DovizCevirici/
+├── .github/
 ├── src/
 │   └── DovizCevirici/
 │       ├── Application/
@@ -64,9 +66,15 @@ DovizCevirici/
 │   ├── 01-proje-genel-bakis.md
 │   ├── 02-isimlendirme-standardi.md
 │   ├── architecture/
+│   │   ├── 01-mimari-genel-bakis.md
+│   │   └── 02-katman-sorumluluklari.md
 │   ├── api-kesfi/
+│   │   └── 01-postman-api-kesfi.md
 │   └── validation/
+│       └── 01-dogrulama-ve-karsilastirma.md
 ├── postman/
+│   ├── usd-try-ornek-response.json
+│   └── usd-coklu-para-birimi-response.json
 ├── README.md
 ├── .gitignore
 └── DovizCevirici.sln
@@ -111,6 +119,18 @@ Detaylı proje dokümantasyonu `docs/` klasörü altında tutulmaktadır.
 - [Katman Sorumlulukları](docs/architecture/02-katman-sorumluluklari.md)
 - [API Keşfi ve Postman](docs/api-kesfi/01-postman-api-kesfi.md)
 - [Doğrulama ve Karşılaştırma](docs/validation/01-dogrulama-ve-karsilastirma.md)
+
+## Postman Dosyaları
+
+Postman üzerinde alınan örnek JSON response çıktıları repository kökünde yer alan `postman/` klasörü altında tutulmaktadır.
+
+```text
+postman/
+├── usd-try-ornek-response.json
+└── usd-coklu-para-birimi-response.json
+```
+
+Bu dosyalar, API keşfi sırasında incelenen örnek response yapılarını ham JSON formatında göstermektedir.
 
 ## Mevcut Durum
 
