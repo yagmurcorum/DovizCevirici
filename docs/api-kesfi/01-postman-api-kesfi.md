@@ -144,6 +144,18 @@ quotes = kullanıcının seçtiği hedef para birimi
 
 API'den dönen `rate` değeri Application katmanında dönüşüm hesabında kullanılır.
 
+## İlgili Postman Artefact Dosyaları
+
+Postman üzerinde alınan örnek JSON response çıktıları repository kökünde yer alan `postman/` klasörü altında saklanmaktadır.
+
+```text
+postman/
+├── usd-try-ornek-response.json
+└── usd-coklu-para-birimi-response.json
+```
+
+Bu dosyalar, API keşfi sırasında incelenen örnek response yapılarını ham JSON formatında göstermektedir.
+
 ## Sonuç
 
 Postman testi sonucunda Frankfurter API'nin proje kapsamında kullanılabilir olduğu doğrulanmıştır. API response yapısı incelenmiş, dönüşüm hesabında kullanılacak değerin `rate` alanı olduğu netleştirilmiş ve aynı yaklaşım Windows Forms uygulamasına taşınmıştır.
