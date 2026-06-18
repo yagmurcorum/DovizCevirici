@@ -1,0 +1,32 @@
+[
+  {
+    "date": "2026-06-18",
+    "base": "USD",
+    "quote": "CHF",
+    "rate": 0.79434
+  },
+  {
+    "date": "2026-06-18",
+    "base": "USD",
+    "quote": "EUR",
+    "rate": 0.86357
+  },
+  {
+    "date": "2026-06-18",
+    "base": "USD",
+    "quote": "GBP",
+    "rate": 0.74686
+  },
+  {
+    "date": "2026-06-18",
+    "base": "USD",
+    "quote": "JPY",
+    "rate": 160.47
+  },
+  {
+    "date": "2026-06-18",
+    "base": "USD",
+    "quote": "TRY",
+    "rate": 46.348
+  }
+]
