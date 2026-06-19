@@ -36,6 +36,9 @@
             lblResult = new Label();
             txtAmount = new TextBox();
             btnConvert = new Button();
+            dgvPopularRates = new DataGridView();
+            lblPopularRates = new Label();
+            ((System.ComponentModel.ISupportInitialize)dgvPopularRates).BeginInit();
             SuspendLayout();
             // 
             // lblSourceCurrency
@@ -84,7 +87,7 @@
             // lblResult
             // 
             lblResult.AutoSize = true;
-            lblResult.Location = new Point(540, 59);
+            lblResult.Location = new Point(539, 59);
             lblResult.Name = "lblResult";
             lblResult.Size = new Size(187, 20);
             lblResult.TabIndex = 5;
@@ -99,18 +102,44 @@
             // 
             // btnConvert
             // 
-            btnConvert.Location = new Point(612, 101);
+            btnConvert.Location = new Point(12, 112);
             btnConvert.Name = "btnConvert";
             btnConvert.Size = new Size(94, 29);
             btnConvert.TabIndex = 7;
             btnConvert.Text = "Çevir";
             btnConvert.UseVisualStyleBackColor = true;
             // 
+            // dgvPopularRates
+            // 
+            dgvPopularRates.AllowUserToAddRows = false;
+            dgvPopularRates.AllowUserToDeleteRows = false;
+            dgvPopularRates.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvPopularRates.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvPopularRates.Location = new Point(23, 224);
+            dgvPopularRates.MultiSelect = false;
+            dgvPopularRates.Name = "dgvPopularRates";
+            dgvPopularRates.ReadOnly = true;
+            dgvPopularRates.RowHeadersWidth = 51;
+            dgvPopularRates.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvPopularRates.Size = new Size(300, 188);
+            dgvPopularRates.TabIndex = 8;
+            // 
+            // lblPopularRates
+            // 
+            lblPopularRates.AutoSize = true;
+            lblPopularRates.Location = new Point(52, 185);
+            lblPopularRates.Name = "lblPopularRates";
+            lblPopularRates.Size = new Size(102, 20);
+            lblPopularRates.TabIndex = 9;
+            lblPopularRates.Text = "Popüler Kurlar";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblPopularRates);
+            Controls.Add(dgvPopularRates);
             Controls.Add(btnConvert);
             Controls.Add(txtAmount);
             Controls.Add(lblResult);
@@ -121,6 +150,8 @@
             Controls.Add(lblSourceCurrency);
             Name = "Form1";
             Text = "Döviz Çevirici";
+            Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvPopularRates).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -135,5 +166,7 @@
         private Label lblResult;
         private TextBox txtAmount;
         private Button btnConvert;
+        private DataGridView dgvPopularRates;
+        private Label lblPopularRates;
     }
 }

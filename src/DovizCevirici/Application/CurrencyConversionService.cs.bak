@@ -58,43 +58,24 @@ public class CurrencyConversionService
     {
         if (string.IsNullOrWhiteSpace(request.SourceCurrency))
         {
-            return ValidationResult.Failure("Kaynak para birimi seÃ§ilmelidir.");
+            return ValidationResult.Failure("Kaynak para birimi seçilmelidir.");
         }
 
         if (string.IsNullOrWhiteSpace(request.TargetCurrency))
         {
-            return ValidationResult.Failure("Hedef para birimi seÃ§ilmelidir.");
+            return ValidationResult.Failure("Hedef para birimi seçilmelidir.");
         }
 
         if (request.Amount <= 0)
         {
-            return ValidationResult.Failure("Tutar sÄ±fÄ±rdan bÃ¼yÃ¼k olmalÄ±dÄ±r.");
+            return ValidationResult.Failure("Tutar sýfýrdan büyük olmalýdýr.");
         }
 
         if (request.SourceCurrency == request.TargetCurrency)
         {
-            return ValidationResult.Failure("Kaynak ve hedef para birimi aynÄ± olamaz.");
+            return ValidationResult.Failure("Kaynak ve hedef para birimi ayný olamaz.");
         }
 
         return ValidationResult.Success();
-    }
-    /// <summary>
-    /// Gets popular exchange rates used for the bonus DataGridView display.
-    /// </summary>
-    /// <returns>Popular exchange rate response list.</returns>
-    public async Task<List<ExchangeRateResponse>> GetPopularRatesAsync()
-    {
-        string sourceCurrency = "USD";
-
-        string[] targetCurrencies =
-        {
-        "TRY",
-        "EUR",
-        "GBP",
-        "CHF",
-        "JPY"
-    };
-
-        return await _apiClient.GetRatesAsync(sourceCurrency, targetCurrencies);
     }
 }

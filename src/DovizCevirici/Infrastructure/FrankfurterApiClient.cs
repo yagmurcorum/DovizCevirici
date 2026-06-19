@@ -69,4 +69,52 @@ public class FrankfurterApiClient
             throw new Exception("API yanıtı beklenen formatta okunamadı.");
         }
     }
+    /// <summary>
+    /// Gets exchange rate records for multiple target currencies.
+    /// </summary>
+    /// <param name="sourceCurrency">Source currency code.</param>
+    /// <param name="targetCurrencies">Target currency codes.</param>
+    /// <returns>Exchange rate response list.</returns>
+    /// <exception cref="Exception">Thrown when the API request fails or response cannot be read.</exception>
+    public async Task<List<ExchangeRateResponse>> GetRatesAsync(
+        string sourceCurrency,
+        string[] targetCurrencies)
+    {
+        try
+        {
+            string quotes = string.Join(",", targetCurrencies);
+            string requestUrl = $"{BaseUrl}?base={sourceCurrency}&quotes={quotes}";
+
+            HttpResponseMessage response = await _httpClient.GetAsync(requestUrl);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Döviz kuru listesi alınırken API isteği başarısız oldu.");
+            }
+
+            string jsonResponse = await response.Content.ReadAsStringAsync();
+
+            List<ExchangeRateResponse>? rates =
+                JsonConvert.DeserializeObject<List<ExchangeRateResponse>>(jsonResponse);
+
+            if (rates == null || rates.Count == 0)
+            {
+                throw new Exception("API yanıtından geçerli kur listesi okunamadı.");
+            }
+
+            return rates;
+        }
+        catch (HttpRequestException)
+        {
+            throw new Exception("API bağlantısı sırasında bir sorun oluştu. Lütfen internet bağlantınızı kontrol edin.");
+        }
+        catch (TaskCanceledException)
+        {
+            throw new Exception("API isteği zaman aşımına uğradı. Lütfen tekrar deneyin.");
+        }
+        catch (JsonException)
+        {
+            throw new Exception("API yanıtı beklenen formatta okunamadı.");
+        }
+    }
 }

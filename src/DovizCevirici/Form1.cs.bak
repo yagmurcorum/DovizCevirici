@@ -19,10 +19,6 @@ public partial class Form1 : Form
         AcceptButton = btnConvert;
 
         btnConvert.Click += btnConvert_Click;
-
-        ConfigurePopularRatesGrid();
-
-        Load += Form1_Load;
     }
 
     /// <summary>
@@ -58,12 +54,12 @@ public partial class Form1 : Form
         try
         {
             btnConvert.Enabled = false;
-            lblResult.Text = "Ä°ÅŸlem yapÄ±lÄ±yor...";
+            lblResult.Text = "Ýþlem yapýlýyor...";
 
             if (!TryReadAmount(out decimal amount))
             {
-                ShowWarningMessage("Tutar sayÄ±sal bir deÄŸer olmalÄ±dÄ±r.");
-                lblResult.Text = "SonuÃ§ burada gÃ¶sterilecek.";
+                ShowWarningMessage("Tutar sayýsal bir deðer olmalýdýr.");
+                lblResult.Text = "Sonuç burada gösterilecek.";
                 return;
             }
 
@@ -81,7 +77,7 @@ public partial class Form1 : Form
         catch (Exception ex)
         {
             ShowErrorMessage(ex.Message);
-            lblResult.Text = "Ä°ÅŸlem tamamlanamadÄ±.";
+            lblResult.Text = "Ýþlem tamamlanamadý.";
         }
         finally
         {
@@ -108,70 +104,7 @@ public partial class Form1 : Form
                    CultureInfo.InvariantCulture,
                    out amount);
     }
-    /// <summary>
-    /// Handles the form load event and loads popular exchange rates automatically.
-    /// </summary>
-    private async void Form1_Load(object? sender, EventArgs e)
-    {
-        await LoadPopularRatesAsync();
-    }
 
-    /// <summary>
-    /// Loads popular exchange rates into the DataGridView.
-    /// </summary>
-    private async Task LoadPopularRatesAsync()
-    {
-        try
-        {
-            List<ExchangeRateResponse> popularRates =
-                await _conversionService.GetPopularRatesAsync();
-
-            dgvPopularRates.DataSource = popularRates
-                .Select(rate => new
-                {
-                    Date = rate.Date.ToString("yyyy-MM-dd"),
-                    rate.Base,
-                    rate.Quote,
-                    rate.Rate
-                })
-                .ToList();
-
-            UpdatePopularRatesGridHeaders();
-        }
-        catch (Exception ex)
-        {
-            ShowErrorMessage(ex.Message);
-        }
-    }
-
-    /// <summary>
-    /// Configures the popular rates DataGridView.
-    /// </summary>
-    private void ConfigurePopularRatesGrid()
-    {
-        dgvPopularRates.ReadOnly = true;
-        dgvPopularRates.AllowUserToAddRows = false;
-        dgvPopularRates.AllowUserToDeleteRows = false;
-        dgvPopularRates.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        dgvPopularRates.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        dgvPopularRates.MultiSelect = false;
-    }
-
-    /// <summary>
-    /// Updates DataGridView column headers for better readability.
-    /// </summary>
-    private void UpdatePopularRatesGridHeaders()
-    {
-        if (dgvPopularRates.Columns.Count == 0)
-        {
-            return;
-        }
-
-        dgvPopularRates.Columns["Date"].HeaderText = "Tarih";
-        dgvPopularRates.Columns["Base"].HeaderText = "Kaynak";
-        dgvPopularRates.Columns["Quote"].HeaderText = "Hedef";
-        dgvPopularRates.Columns["Rate"].HeaderText = "Kur";
-    }
     /// <summary>
     /// Shows a warning message to the user.
     /// </summary>
@@ -179,7 +112,7 @@ public partial class Form1 : Form
     {
         MessageBox.Show(
             message,
-            "UyarÄ±",
+            "Uyarý",
             MessageBoxButtons.OK,
             MessageBoxIcon.Warning);
     }
@@ -195,6 +128,4 @@ public partial class Form1 : Form
             MessageBoxButtons.OK,
             MessageBoxIcon.Error);
     }
-
-
 }
