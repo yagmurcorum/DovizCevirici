@@ -28,6 +28,9 @@ Bu projede temel Presentation bileşeni `Form1` dosyasıdır.
 - Sonucu kullanıcıya göstermek
 - Kullanıcıya uyarı veya hata mesajı göstermek
 - UI state yönetimi yapmak
+- Popüler kur listesini DataGridView üzerinde göstermek
+- API response içindeki `date`, `base`, `quote` ve `rate` alanlarını kullanıcıya okunabilir şekilde sunmak
+- Uygulama açılışında otomatik yüklenen kur listesini ekranda göstermek
 
 ### Yapmaması Gerekenler
 
@@ -50,6 +53,8 @@ Bu projede temel Application bileşeni `CurrencyConversionService` sınıfıdır
 - Infrastructure katmanından kur bilgisini istemek
 - Dönüşüm hesabını yapmak
 - Presentation katmanına gösterilebilir sonuç döndürmek
+- Bonus kapsamındaki popüler kur listesi yükleme akışını yönetmek
+- Popüler kurlar için kullanılacak kaynak ve hedef para birimi listesini belirlemek
 
 ### Yapmaması Gerekenler
 
@@ -92,6 +97,8 @@ Bu projede temel dış sistem Frankfurter API'dir.
 - Newtonsoft.Json ile JSON parse işlemini yapmak
 - Response içindeki `rate` değerini okumak
 - API bağlantısı veya response formatı ile ilgili teknik hataları yönetmek
+- Çoklu hedef para birimi için Frankfurter API isteği göndermek
+- Popüler kur listesi için dönen JSON response listesini parse etmek
 
 ### Yapmaması Gerekenler
 
@@ -102,15 +109,20 @@ Bu projede temel dış sistem Frankfurter API'dir.
 
 ## Katmanlara Göre Örnek Sorumluluk Dağılımı
 
-| İşlem | Sorumlu Katman |
-|---|---|
-| Kullanıcının tutar girmesi | Presentation |
-| Tutarın sıfırdan büyük olup olmadığını kontrol etme | Application |
-| API'ye istek atma | Infrastructure |
-| JSON response içerisinden `rate` değerini okuma | Infrastructure |
-| Dönüşüm sonucunu hesaplama | Application |
-| Sonucu ekranda gösterme | Presentation |
-| Request ve result modellerini taşıma | Domain |
+| İşlem                                                            | Sorumlu Katman |
+| ---------------------------------------------------------------- | -------------- |
+| Kullanıcının tutar girmesi                                       | Presentation   |
+| Tutarın sıfırdan büyük olup olmadığını kontrol etme              | Application    |
+| API'ye istek atma                                                | Infrastructure |
+| JSON response içerisinden `rate` değerini okuma                  | Infrastructure |
+| Dönüşüm sonucunu hesaplama                                       | Application    |
+| Sonucu ekranda gösterme                                          | Presentation   |
+| Request ve result modellerini taşıma                             | Domain         |
+| Popüler kurların uygulama açılışında yüklenmesi                  | Application    |
+| Çoklu kur bilgisinin API'den alınması                            | Infrastructure |
+| Popüler kur listesinin DataGridView üzerinde gösterilmesi        | Presentation   |
+| `date`, `base`, `quote`, `rate` alanlarının tabloya yansıtılması | Presentation   |
+
 
 ## Temel Standart
 

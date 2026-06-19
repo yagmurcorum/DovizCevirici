@@ -155,6 +155,7 @@ public partial class Form1 : Form
         dgvPopularRates.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         dgvPopularRates.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         dgvPopularRates.MultiSelect = false;
+        dgvPopularRates.RowHeadersVisible = false;
     }
 
     /// <summary>
@@ -171,6 +172,14 @@ public partial class Form1 : Form
         dgvPopularRates.Columns["Base"].HeaderText = "Kaynak";
         dgvPopularRates.Columns["Quote"].HeaderText = "Hedef";
         dgvPopularRates.Columns["Rate"].HeaderText = "Kur";
+
+        dgvPopularRates.Columns["Date"].FillWeight = 120;
+        dgvPopularRates.Columns["Base"].FillWeight = 80;
+        dgvPopularRates.Columns["Quote"].FillWeight = 80;
+        dgvPopularRates.Columns["Rate"].FillWeight = 100;
+
+        dgvPopularRates.Columns["Rate"].DefaultCellStyle.Format = "N5";
+        dgvPopularRates.Columns["Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
     }
     /// <summary>
     /// Shows a warning message to the user.

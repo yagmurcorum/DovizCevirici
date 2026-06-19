@@ -121,7 +121,7 @@
             dgvPopularRates.ReadOnly = true;
             dgvPopularRates.RowHeadersWidth = 51;
             dgvPopularRates.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvPopularRates.Size = new Size(300, 188);
+            dgvPopularRates.Size = new Size(300, 172);
             dgvPopularRates.TabIndex = 8;
             // 
             // lblPopularRates

@@ -61,6 +61,21 @@ Bu istekte:
 | `quote` | Hedef para birimi |
 | `rate` | Kaynak para biriminin hedef para birimi karşılığı |
 
+## Bonus Kapsamında Gösterilen Response Alanları
+
+Frankfurter API response içinde dönüşüm hesabı için temel olarak `rate` alanı kullanılır. Bonus geliştirme kapsamında response içindeki diğer alanlar da kullanıcıya görünür hale getirilmiştir.
+
+DataGridView üzerinde gösterilen alanlar şunlardır:
+
+| API Alanı | DataGridView Kolonu | Açıklama |
+|---|---|---|
+| `date` | Tarih | Kur bilgisinin ait olduğu tarih |
+| `base` | Kaynak | Kaynak para birimi |
+| `quote` | Hedef | Hedef para birimi |
+| `rate` | Kur | Kaynak para biriminin hedef para birimi karşılığı |
+
+Bu kapsamda “API'nin yanıtında başka ilginç bir alan varsa onu da göster” bonus maddesi için özellikle `date` alanı kullanılmıştır. Çünkü döviz kuru bilgisinde kurun hangi tarihe ait olduğu finansal bağlamda anlamlı bir bilgidir.
+
 ## Rate Alanının Kullanımı
 
 Windows Forms uygulamasında dönüşüm hesabı için response içindeki `rate` alanı kullanılır.
@@ -127,24 +142,32 @@ Aşağıdaki örnekte USD baz alınarak birden fazla hedef para birimi için res
 
 ## Postman'den Uygulamaya Geçiş
 
-Postman üzerinde test edilen yaklaşım Windows Forms uygulamasında aynı mantıkla kullanılmıştır.
+Postman üzerinde test edilen API yaklaşımı Windows Forms uygulamasında iki farklı kullanım senaryosuna taşınmıştır.
 
-Postman'de kullanılan istek:
+İlk senaryo, kullanıcının seçtiği kaynak ve hedef para birimine göre yapılan manuel döviz çevirme işlemidir. Bu akışta tek bir kaynak-hedef para birimi çifti için kur bilgisi alınır.
 
-```text
+Postman'de kullanılan örnek tekli istek:
+
 GET https://api.frankfurter.dev/v2/rates?base=USD&quotes=TRY
-```
 
-Windows Forms uygulamasında oluşturulan istek mantığı:
+Windows Forms uygulamasında manuel çevirme için oluşturulan istek mantığı:
 
-```text
 base = kullanıcının seçtiği kaynak para birimi
 quotes = kullanıcının seçtiği hedef para birimi
-```
 
-API'den dönen `rate` değeri Application katmanında dönüşüm hesabında kullanılır.
+Bu akışta API'den dönen rate değeri Application katmanında dönüşüm hesabında kullanılır.
 
-## İlgili Postman Artefact Dosyaları
+Bonus geliştirme kapsamında ise tekli kur isteğine ek olarak çoklu hedef para birimi isteği de kullanılmıştır. Bu yapı, uygulama açıldığında popüler döviz kurlarının otomatik olarak yüklenmesi ve DataGridView üzerinde listelenmesi için eklenmiştir.
+
+Bonus kapsamındaki örnek çoklu istek:
+
+GET https://api.frankfurter.dev/v2/rates?base=USD&quotes=TRY,EUR,GBP,CHF,JPY
+
+Bu istek ile USD bazlı popüler para birimleri tek API isteğiyle alınır. API response içinde dönen date, base, quote ve rate alanları DataGridView üzerinde gösterilir.
+
+Bu sayede Postman'de incelenen response yapısı yalnızca manuel dönüşüm hesabında değil, aynı zamanda uygulama açılışında gösterilen popüler kur listesinde de kullanılmıştır.
+
+## İlgili Postman Dosyaları
 
 Postman üzerinde alınan örnek JSON response çıktıları repository kökünde yer alan `postman/` klasörü altında saklanmaktadır.
 

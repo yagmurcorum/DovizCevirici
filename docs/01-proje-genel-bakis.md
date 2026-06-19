@@ -62,6 +62,22 @@ MVP kapsamında aşağıdaki özellikler tamamlanmıştır:
 - Kaynak ve hedef para biriminin aynı seçilmesi durumunda kullanıcıya uyarı verilmesi
 - README ve teknik dokümantasyonun hazırlanması
 
+## Bonus Kapsamı
+
+MVP kapsamı tamamlandıktan sonra uygulamaya görev dokümanında belirtilen opsiyonel bonus özellikler eklenmiştir.
+
+Bonus kapsamındaki geliştirmeler şunlardır:
+
+| Bonus | Açıklama |
+|---|---|
+| Popüler para birimlerini listeleme | Windows Forms arayüzüne eklenen DataGridView üzerinde USD bazlı popüler kur listesi gösterilir |
+| API response alanı gösterimi | Frankfurter API response içinde yer alan `date`, `base`, `quote` ve `rate` alanları kullanıcıya gösterilir |
+| Otomatik kur yükleme | Uygulama açıldığında popüler kur listesi otomatik olarak yüklenir |
+
+Popüler kur listesi için kaynak para birimi `USD` olarak belirlenmiştir. Hedef para birimleri `TRY`, `EUR`, `GBP`, `CHF` ve `JPY` olarak seçilmiştir.
+
+Bu seçimle amaç, hem Postman tarafında kullanılan USD bazlı API keşfi yaklaşımını uygulama tarafında da sürdürmek hem de yaygın kullanılan para birimlerini sade bir tablo ile göstermektir.
+
 ## Kapsam Dışı
 
 Aşağıdaki konular bu projenin kapsamı dışındadır:
@@ -94,3 +110,6 @@ Teslim kapsamında aşağıdaki çıktılar hazırlanmıştır:
 - README.md
 - Mimari ve doğrulama dokümanları
 - GitHub repository düzeni
+- DataGridView ile popüler kur listesi gösterimi
+- Uygulama açılışında otomatik kur yükleme
+- API response içindeki `date`, `base`, `quote` ve `rate` alanlarının kullanıcıya gösterilmesi

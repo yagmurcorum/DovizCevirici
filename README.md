@@ -23,6 +23,19 @@ Bu projenin MVP kapsamı aşağıdaki maddelerden oluşur:
 - Geçersiz kullanıcı girişleri için anlamlı hata mesajları verilmesi
 - README ve docs klasörü altında proje dokümantasyonunun hazırlanması
 
+## Bonus Özellikler
+
+MVP kapsamı tamamlandıktan sonra uygulamaya aşağıdaki bonus özellikler eklenmiştir:
+
+- Windows Forms arayüzünde popüler para birimlerini listeleyen bir DataGridView eklenmiştir.
+- Frankfurter API response içinde yer alan `date`, `base`, `quote` ve `rate` alanları DataGridView üzerinde gösterilmiştir.
+- Uygulama açıldığında USD bazlı popüler kur listesi otomatik olarak yüklenmektedir.
+
+Bu bonus geliştirmeler, temel döviz çevirme akışını değiştirmeden API response görünürlüğünü artırmak ve kullanıcıya başlangıçta örnek kur bilgilerini göstermek amacıyla eklenmiştir.
+
+Popüler kur listesi için kaynak para birimi `USD` olarak belirlenmiştir. Hedef para birimleri ise `TRY`, `EUR`, `GBP`, `CHF` ve `JPY` olarak seçilmiştir. Bu seçim, hem Postman testlerinde kullanılan USD bazlı yaklaşımı sürdürmek hem de yaygın kullanılan para birimlerini sade bir liste halinde göstermek amacıyla yapılmıştır.
+
+
 ## Kapsam Dışı
 
 Bu proje kapsamında aşağıdaki başlıklar yer almamaktadır:
@@ -135,5 +148,7 @@ Bu dosyalar, API keşfi sırasında incelenen örnek response yapılarını ham 
 ## Mevcut Durum
 
 MVP kapsamındaki temel geliştirme, API keşfi, uygulama testi ve dokümantasyon hazırlığı tamamlanmıştır.
+
+Bonus kapsamda DataGridView ile popüler kur listesi gösterimi, API response alanlarının görünür hale getirilmesi ve uygulama açılışında otomatik kur yükleme özellikleri eklenmiştir.
 
 Bu proje öğrenme ve staj görevi kapsamında hazırlanmıştır.
