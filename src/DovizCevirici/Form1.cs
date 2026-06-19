@@ -21,8 +21,6 @@ public partial class Form1 : Form
         btnConvert.Click += btnConvert_Click;
 
         ConfigurePopularRatesGrid();
-
-        Load += Form1_Load;
     }
 
     /// <summary>

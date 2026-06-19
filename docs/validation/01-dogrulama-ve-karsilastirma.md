@@ -52,6 +52,9 @@ EUR
 GBP
 CHF
 JPY
+```
+
+Bu bonus kontrollerin ardından manuel döviz çevirme akışı da tekrar kontrol edilmiştir. Bonus geliştirmelerin mevcut MVP işlevini bozmadığı doğrulanmıştır.
 
 ## Geçersiz Kullanıcı Girişi Senaryoları
 

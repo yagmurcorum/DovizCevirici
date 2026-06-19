@@ -57,6 +57,11 @@ Form1 Load Event
 → Frankfurter API
 → ExchangeRateResponse List
 → DataGridView
+```
+
+Bu yapı, mevcut katmanlı mimari yaklaşımı bozmadan uygulanmıştır. Form doğrudan API çağrısı yapmaz; popüler kur listesi için de Application ve Infrastructure katmanları kullanılır.
+
+Bonus kapsamında DataGridView üzerinde API response içindeki `date`, `base`, `quote` ve `rate` alanları gösterilir. Böylece yalnızca dönüşüm sonucu değil, API'den gelen temel response bilgileri de kullanıcıya görünür hale getirilir.
 
 ## Katmanlı Mimari Kullanım Nedeni
 
