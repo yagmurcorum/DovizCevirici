@@ -93,9 +93,8 @@
             // txtAmount
             // 
             txtAmount.Location = new Point(356, 59);
-            txtAmount.Multiline = true;
             txtAmount.Name = "txtAmount";
-            txtAmount.Size = new Size(150, 33);
+            txtAmount.Size = new Size(150, 27);
             txtAmount.TabIndex = 6;
             // 
             // btnConvert
