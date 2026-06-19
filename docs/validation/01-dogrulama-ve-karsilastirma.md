@@ -44,7 +44,7 @@ MVP doğrulama senaryolarına ek olarak bonus özellikler için aşağıdaki kon
 | API response alanı gösterimi | DataGridView kolonları kontrol edildi | `date`, `base`, `quote` ve `rate` alanları kullanıcıya gösterilir |
 | Uygulama açılışında otomatik yükleme | Uygulama başlatıldıktan sonra tablo kontrol edildi | Kullanıcı butona basmadan popüler kur listesi otomatik yüklenir |
 
-Test edilen popüler kur listesi USD bazlıdır ve aşağıdaki hedef para birimlerini içerir:
+Test edilen seçili kur listesi USD bazlıdır ve aşağıdaki hedef para birimlerini içerir:
 
 ```text
 TRY
@@ -54,7 +54,8 @@ CHF
 JPY
 ```
 
-Bu bonus kontrollerin ardından manuel döviz çevirme akışı da tekrar kontrol edilmiştir. Bonus geliştirmelerin mevcut MVP işlevini bozmadığı doğrulanmıştır.
+Bu liste, görev dokümanındaki “popüler para birimleri” bonus maddesini karşılamak için örnek kur listesi olarak kullanılmıştır. Liste resmi bir popülerlik sıralaması iddiası taşımaz; farklı para birimlerinin tek API isteğiyle alınması ve DataGridView üzerinde gösterilmesi amacıyla seçilmiştir.
+
 
 ## Geçersiz Kullanıcı Girişi Senaryoları
 

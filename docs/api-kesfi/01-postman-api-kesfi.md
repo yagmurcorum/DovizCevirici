@@ -163,7 +163,9 @@ Bonus kapsamındaki örnek çoklu istek:
 
 GET https://api.frankfurter.dev/v2/rates?base=USD&quotes=TRY,EUR,GBP,CHF,JPY
 
-Bu istek ile USD bazlı popüler para birimleri tek API isteğiyle alınır. API response içinde dönen date, base, quote ve rate alanları DataGridView üzerinde gösterilir.
+Bu istek ile USD bazlı seçili örnek para birimleri tek API isteğiyle alınır. Görev dokümanındaki “popüler para birimleri” bonus maddesi kapsamında bu liste DataGridView üzerinde gösterilmiştir.
+
+API response içinde dönen date, base, quote ve rate alanları DataGridView üzerinde gösterilir.
 
 Bu sayede Postman'de incelenen response yapısı yalnızca manuel dönüşüm hesabında değil, aynı zamanda uygulama açılışında gösterilen popüler kur listesinde de kullanılmıştır.
 

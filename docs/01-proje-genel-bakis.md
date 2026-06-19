@@ -74,9 +74,9 @@ Bonus kapsamındaki geliştirmeler şunlardır:
 | API response alanı gösterimi | Frankfurter API response içinde yer alan `date`, `base`, `quote` ve `rate` alanları kullanıcıya gösterilir |
 | Otomatik kur yükleme | Uygulama açıldığında popüler kur listesi otomatik olarak yüklenir |
 
-Popüler kur listesi için kaynak para birimi `USD` olarak belirlenmiştir. Hedef para birimleri `TRY`, `EUR`, `GBP`, `CHF` ve `JPY` olarak seçilmiştir.
+Görev dokümanındaki “popüler para birimleri” bonus maddesi kapsamında, uygulamada USD bazlı seçili örnek para birimleri listelenmiştir. Hedef para birimleri TRY, EUR, GBP, CHF ve JPY olarak belirlenmiştir.
 
-Bu seçimle amaç, hem Postman tarafında kullanılan USD bazlı API keşfi yaklaşımını uygulama tarafında da sürdürmek hem de yaygın kullanılan para birimlerini sade bir tablo ile göstermektir.
+Bu seçim, resmi bir popülerlik sıralaması iddiası taşımadan; farklı para birimlerinin tek API isteğiyle alınmasını, DataGridView üzerinde listelenmesini ve API response alanlarının kullanıcıya gösterilmesini sağlamak amacıyla yapılmıştır.
 
 ## Kapsam Dışı
 
