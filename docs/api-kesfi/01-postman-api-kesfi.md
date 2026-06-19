@@ -153,6 +153,7 @@ GET https://api.frankfurter.dev/v2/rates?base=USD&quotes=TRY
 Windows Forms uygulamasında manuel çevirme için oluşturulan istek mantığı:
 
 base = kullanıcının seçtiği kaynak para birimi
+
 quotes = kullanıcının seçtiği hedef para birimi
 
 Bu akışta API'den dönen rate değeri Application katmanında dönüşüm hesabında kullanılır.

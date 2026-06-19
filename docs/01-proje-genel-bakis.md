@@ -84,7 +84,7 @@ Aşağıdaki konular bu projenin kapsamı dışındadır:
 
 - Ayrı bir backend API geliştirme
 - Web uygulaması geliştirme
-- Veritabanı kullanımı
+- Veri Tabanı kullanımı
 - Kullanıcı girişi veya yetkilendirme
 - Production seviyesinde hata yönetimi
 - CI/CD pipeline kurulumu
