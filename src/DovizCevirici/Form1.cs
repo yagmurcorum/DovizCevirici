@@ -54,12 +54,12 @@ public partial class Form1 : Form
         try
         {
             btnConvert.Enabled = false;
-            lblResult.Text = "Ýþlem yapýlýyor...";
+            lblResult.Text = "Ä°ÅŸlem yapÄ±lÄ±yor...";
 
             if (!TryReadAmount(out decimal amount))
             {
-                ShowWarningMessage("Tutar sayýsal bir deðer olmalýdýr.");
-                lblResult.Text = "Sonuç burada gösterilecek.";
+                ShowWarningMessage("Tutar sayÄ±sal bir deÄŸer olmalÄ±dÄ±r.");
+                lblResult.Text = "SonuÃ§ burada gÃ¶sterilecek.";
                 return;
             }
 
@@ -77,7 +77,7 @@ public partial class Form1 : Form
         catch (Exception ex)
         {
             ShowErrorMessage(ex.Message);
-            lblResult.Text = "Ýþlem tamamlanamadý.";
+            lblResult.Text = "Ä°ÅŸlem tamamlanamadÄ±.";
         }
         finally
         {
@@ -112,7 +112,7 @@ public partial class Form1 : Form
     {
         MessageBox.Show(
             message,
-            "Uyarý",
+            "UyarÄ±",
             MessageBoxButtons.OK,
             MessageBoxIcon.Warning);
     }

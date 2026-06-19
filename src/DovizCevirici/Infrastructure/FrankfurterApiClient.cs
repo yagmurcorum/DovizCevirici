@@ -39,7 +39,7 @@ public class FrankfurterApiClient
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("Döviz kuru bilgisi alınırken API isteği başarısız oldu.");
+                throw new Exception("DÃ¶viz kuru bilgisi alÄ±nÄ±rken API isteÄŸi baÅŸarÄ±sÄ±z oldu.");
             }
 
             string jsonResponse = await response.Content.ReadAsStringAsync();
@@ -51,22 +51,22 @@ public class FrankfurterApiClient
 
             if (rateResponse == null || rateResponse.Rate <= 0)
             {
-                throw new Exception("API yanıtından geçerli kur bilgisi okunamadı.");
+                throw new Exception("API yanÄ±tÄ±ndan geÃ§erli kur bilgisi okunamadÄ±.");
             }
 
             return rateResponse.Rate;
         }
         catch (HttpRequestException)
         {
-            throw new Exception("API bağlantısı sırasında bir sorun oluştu. Lütfen internet bağlantınızı kontrol edin.");
+            throw new Exception("API baÄŸlantÄ±sÄ± sÄ±rasÄ±nda bir sorun oluÅŸtu. LÃ¼tfen internet baÄŸlantÄ±nÄ±zÄ± kontrol edin.");
         }
         catch (TaskCanceledException)
         {
-            throw new Exception("API isteği zaman aşımına uğradı. Lütfen tekrar deneyin.");
+            throw new Exception("API isteÄŸi zaman aÅŸÄ±mÄ±na uÄŸradÄ±. LÃ¼tfen tekrar deneyin.");
         }
         catch (JsonException)
         {
-            throw new Exception("API yanıtı beklenen formatta okunamadı.");
+            throw new Exception("API yanÄ±tÄ± beklenen formatta okunamadÄ±.");
         }
     }
 }
